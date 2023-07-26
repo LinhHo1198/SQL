@@ -1,0 +1,29 @@
+--Create a ice_cream store database
+
+CREATE TABLE Ice_Cream (id INTEGER PRIMARY KEY, name TEXT, price_scope INTEGER, nut TEXT, box INTEGER); 
+
+INSERT INTO Ice_Cream VALUES
+(1, "Mint Chip", 5, "no", 5),
+(2, "Fresh Strawberry", 4, "no", 3),
+(3, "Cotton Candy", 4.5, "no", 2),
+(4, "Peanut Butter", 5, "yes", 13),
+(5, "Vannilla", 3.5, "no", 1),
+(6, "Chocolate", 3.5, "no", 4),
+(7, "Cherry", 4, "no", 6),
+(8, "Milk Tea", 4.5, "no", 7),
+(9, "M&M", 5, "yes", 14),
+(10, "Caramel", 4.5, "no", 8),
+(11, "Butter Peacan", 5, "yes", 15),
+(12, "Cookies & Cream", 5, "no", 9),
+(13, "Real Pistachio", 5, "yes", 12),
+(14, "Coffee", 4, "no", 10),
+(15, "Fresh Rasberry", 4, "no", 11);
+
+--display the created databse
+SELECT * FROM Ice_Cream;
+
+--display the database ordered by price. 
+SELECT * FROM ICE_CREAM ORDER BY "price_scope" desc; 
+
+--what is the avg price of all ice cream? 
+SELECT AVG(price_scope) FROM Ice_Cream; 
