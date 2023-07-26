@@ -1,4 +1,4 @@
---Create a ice_cream store database
+--Create a ice_cream store database 
 
 CREATE TABLE Ice_Cream (id INTEGER PRIMARY KEY, name TEXT, price_scope INTEGER, nut TEXT, box INTEGER); 
 
