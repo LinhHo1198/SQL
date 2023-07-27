@@ -1,3 +1,7 @@
+# This project reveals insights about NBA players of the week. 
+
+# This project used advanced SELECT queries to discover things about the data and utilized data from the following dataset:
+
 /*
 Source:
 https://www.kaggle.com/jacobbaruch/nba-player-of-the-week 
@@ -1366,30 +1370,39 @@ INSERT INTO players(Player,Team,Conference,Date,Position,Height,Weight,Age,Draft
 INSERT INTO players(Player,Team,Conference,Date,Position,Height,Weight,Age,Draft_Year,Seasons_in_league,Season,Season_short,Predraft_Team,Real_value,Height_CM,Weight_KG,Last_Season) VALUES ('Micheal Ray Richardson','New York Knicks',NULL,'Oct 28, 1979','PG','6''5',189,24,1978,1,'1979-1980',1980,'Montana',1.0,196,85,0);
 INSERT INTO players(Player,Team,Conference,Date,Position,Height,Weight,Age,Draft_Year,Seasons_in_league,Season,Season_short,Predraft_Team,Real_value,Height_CM,Weight_KG,Last_Season) VALUES ('Julius Erving','Philadelphia Sixers',NULL,'Oct 21, 1979','SF','6''6',200,30,1972,7,'1979-1980',1980,'Massachusetts',1.0,198,90,0);
 
+--Retrieve the first 5 rows from the "players" table.
 Select * from players limit 5;
 
+--Calculate and return the average/maximum/minimum height of all players in the "players" table.
 select avg(HEIGHT) from players;
 select MAX(HEIGHT) from players;
 select MIN(HEIGHT) from players;
 
+--Retrieve the first 5 players who are taller than 5'10.
 SELECT * FROM players Where HEIGHT > "5'10" LIMIT 5;
 
+--Find the maximum height among all players and display that player's name along with the maximum height as "Max_height".
 SELECT player, Max(HEIGHT) AS Max_height FROM players; 
 
+--Retrieve the player's name and team, grouping the results by team and showing only 5 distinct team entries.
 SELECT player, team FROM players GROUP BY TEAM LIMIT 5;
 
-SELECT player, team, HEIGHT FROM players GROUP BY TEAM HAVING HEIGHT > "5’10" LIMIT 5;
-
+--Retrieve the player's name, team, and season for players who played for the "Los Angeles Lakers" team during the 2019-2020 season.
 SELECT player, team, season FROM players WHERE Team = "Los Angeles Lakers" AND season = "2019-2020";
 
+--Count the number of players who played for the "Los Angeles Lakers" team during the 2019-2020 season
 SELECT COUNT(*) FROM players WHERE team = "Los Angeles Lakers" AND season = "2019-2020"; 
 
+--Count the number of seasons played for each player and show the player's name, team, and total count of seasons played for players who played more than 5 seasons, ordering the results by the count in descending order, and showing only 5 results.
 SELECT player, Team, COUNT(Season) AS NUM_SEASONS_PLAYED FROM players GROUP BY player HAVING NUM_SEASONS_PLAYED > 5 order by "NUM_SEASONS_PLAYED" desc LIMIT 5;
 
+--Count the number of seasons played for each player and show the player's name, team, and total count of seasons played for players who played more than 5 seasons and were part of the "Los Angeles Lakers" team.
 SELECT player, Team, COUNT(Season) AS NUM_SEASONS_PLAYED FROM players GROUP BY player HAVING NUM_SEASONS_PLAYED > 5 AND Team = "Los Angeles Lakers";
 
+--Calculate and display the BMI (Body Mass Index) of the first 10 players based on their weight in kilograms and height in centimeters
 SELECT player, ROUND(Weight_KG / ((Height_CM / 100) * (Height_CM / 100)), 2) AS "BMI" FROM players LIMIT 10;
 
+--- Calculate and display the BMI (Body Mass Index) of the first 10 players, along with categorizing them as "Underweight," "Normal," "Overweight," or "Obese" based on their BMI values.
 SELECT player,
        ROUND(Weight_KG / ((Height_CM / 100) * (Height_CM / 100)), 2) AS "BMI",
        CASE
