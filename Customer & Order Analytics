@@ -1,6 +1,4 @@
-SELECT * FROM BIT_DB.JanSales LIMIT 5
-SELECT * FROM BIT_DB.customers LIMIT 5
-
+#In this SQL, I'm querying a database with multiple tables in it to quantify statistics about customer and order data. 
 
 #1. How many orders were placed in January? 
 SELECT COUNT(orderid) 
@@ -30,7 +28,6 @@ WHERE length(orderid) = 6
 AND orderid <> 'Order ID'
 ORDER BY price asc
 LIMIT 1
-
 #OR 
 SELECT Product, price 
 FROM BIT_DB.JanSales
@@ -39,7 +36,6 @@ IN (SELECT MIN(price)
 FROM BIT_DB.JanSales) 
 AND length(orderid) = 6
 AND orderid <> 'Order ID'
-
 #OR
 SELECT product, min(price) 
 FROM BIT_DB.JanSales  
@@ -70,22 +66,5 @@ ON FEB.orderid=cust.order_id
 WHERE Feb.Quantity>2
 AND length(orderid) = 6 
 AND orderid <> 'Order ID'
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
